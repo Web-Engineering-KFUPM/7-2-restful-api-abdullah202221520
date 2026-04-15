@@ -3,7 +3,11 @@ import cors from "cors";
 
 // import dotenv and load environment variables from .env
 import dotenv from "dotenv";
-dotenv.config();
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 import { connectDB } from "./db.js";
 import { Song } from "./models/song.model.js";
