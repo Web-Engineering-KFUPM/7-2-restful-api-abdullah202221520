@@ -30,8 +30,14 @@ app.post("/api/songs", async (req, res) => {
 });
 
 // /api/songs/:id (Update song)
-
+app.put("/api/songs/:id", async (req, res) => {
+    const song = await Song.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(song);
+});
 
 // /api/songs/:id (Delete song)
-
+app.delete("/api/songs/:id", async (req, res) => {
+    const song = await Song.findByIdAndDelete(req.params.id);
+    res.json(song);
+});
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
